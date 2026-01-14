@@ -12,10 +12,312 @@
             font-family: 'Lexend Exa', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             color: #ffffff;
             background-color: #000000;
             min-height: 100vh;
+        }
+
+        .page-wrapper {
+            padding: 20px;
+            padding-top: 140px;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff9500;
+            box-shadow: 0 0 30px rgba(255, 149, 0, 0.3);
+            animation: headerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 149, 0, 0.3);
+                border-bottom-color: #ff9500;
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 149, 0, 0.5);
+                border-bottom-color: #ffa500;
+            }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .header-logo:hover {
+            transform: translateX(5px);
+        }
+
+        .header-logo img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .header-logo:hover img {
+            filter: drop-shadow(0 0 15px rgba(255, 149, 0, 0.8));
+        }
+
+        .header-logo span {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #ff9500;
+            text-shadow: 0 0 20px rgba(255, 149, 0, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #cccccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-link:hover {
+            color: #ff9500;
+            background: rgba(255, 149, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(20, 20, 20, 0.98);
+            backdrop-filter: blur(15px);
+            border: 2px solid #ff9500;
+            border-radius: 16px;
+            min-width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 50px rgba(255, 149, 0, 0.4);
+            margin-top: 15px;
+            padding: 15px 0;
+            overflow: hidden;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 149, 0, 0.05), rgba(255, 119, 0, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .dropdown:hover .dropdown-content::before {
+            opacity: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 16px 25px;
+            color: #cccccc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, rgba(255, 149, 0, 0.2), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .dropdown-item:hover::before {
+            width: 100%;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 149, 0, 0.08);
+            color: #ff9500;
+            border-left-color: #ff9500;
+            padding-left: 30px;
+            transform: translateX(5px);
+        }
+
+        .dropdown-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(255, 149, 0, 0.2), rgba(255, 119, 0, 0.3));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .dropdown-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 149, 0, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .dropdown-item:hover .dropdown-icon {
+            background: linear-gradient(135deg, rgba(255, 149, 0, 0.4), rgba(255, 119, 0, 0.5));
+            box-shadow: 0 6px 25px rgba(255, 149, 0, 0.6);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .dropdown-item:hover .dropdown-icon::before {
+            opacity: 1;
+            animation: iconGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(10%, 10%) scale(1.2);
+            }
+        }
+
+        .dropdown-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #ff9500;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px rgba(255, 149, 0, 0.8));
+        }
+
+        .dropdown-item:hover .dropdown-icon svg {
+            fill: #ffaa33;
+            filter: drop-shadow(0 0 15px rgba(255, 170, 51, 1));
+        }
+
+        .dropdown-text {
+            flex: 1;
+        }
+
+        .dropdown-item-title {
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover .dropdown-item-title {
+            color: #ffaa33;
+            text-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+        }
+
+        .dropdown-item-desc {
+            font-size: 0.8em;
+            color: #888;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover .dropdown-item-desc {
+            color: #aaa;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff9500, #ff7700);
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 149, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 149, 0, 0.5);
+            background: linear-gradient(135deg, #ffa500, #ff8800);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ff9500;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
         .main-container {
@@ -464,6 +766,161 @@
             body {
                 padding: 10px;
             }
+
+            .getting-started > div {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .header-content {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .page-wrapper {
+                padding: 10px;
+                padding-top: 100px;
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 2px solid #ff9500;
+            box-shadow: 0 0 30px rgba(255, 149, 0, 0.3);
+            margin-top: 80px;
+            animation: footerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes footerGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 149, 0, 0.3);
+                border-top-color: #ff9500;
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 149, 0, 0.5);
+                border-top-color: #ffa500;
+            }
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 50px 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-section h4 {
+            color: #ff9500;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 149, 0, 0.4);
+        }
+
+        .footer-section p {
+            color: #cccccc;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: #ff9500;
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 50px;
+            border-top: 1px solid rgba(255, 149, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: #888;
+            margin: 0;
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .social-links a:hover {
+            color: #ff9500;
+            background: rgba(255, 149, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            filter: drop-shadow(0 0 10px rgba(255, 149, 0, 0.4));
+        }
+
+        .footer-logo span {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #ff9500;
         }
     </style>
     <script>
@@ -496,10 +953,157 @@
                     }, 500);
                 });
             }
+
+            // Parallax effect for dropdown icons
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+            dropdownItems.forEach(item => {
+                const icon = item.querySelector('.dropdown-icon');
+                if (!icon) return;
+
+                item.addEventListener('mousemove', function(e) {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const percentX = (x - centerX) / centerX;
+                    const percentY = (y - centerY) / centerY;
+
+                    const moveX = percentX * 8;
+                    const moveY = percentY * 8;
+                    const rotateZ = percentX * 5;
+
+                    icon.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotateZ}deg) scale(1.1)`;
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    icon.style.transform = 'translate(0, 0) rotate(0deg) scale(1)';
+                });
+            });
         });
     </script>
 </head>
 <body>
+    <!-- Header Navigation -->
+    <nav class="header-nav">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="https://raw.githubusercontent.com/notvolks/SulfurAI-1.4/main/apps/SulfurAppAssets/lexendexa2.png" alt="SulfurAI Logo">
+
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="#features" class="nav-link">Features</a>
+                    <div class="dropdown-content">
+                        <a href="#statistics" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="M18 17V9"/>
+                                    <path d="M13 17V5"/>
+                                    <path d="M8 17v-3"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">Statistics Dashboard</div>
+                                <div class="dropdown-item-desc">View all your analytics in one place</div>
+                            </div>
+                        </a>
+                        <a href="#predictions" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">AI Predictions</div>
+                                <div class="dropdown-item-desc">Forecast growth and revenue with AI</div>
+                            </div>
+                        </a>
+                        <a href="#chat" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                    <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                                    <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                                    <circle cx="15" cy="10" r="1" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">Gemini Chat</div>
+                                <div class="dropdown-item-desc">Get intelligent insights instantly</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#resources" class="nav-link">Resources</a>
+                    <div class="dropdown-content">
+                        <a href="https://htmlpreview.github.io/?https://github.com/notvolks/SulfurAI-1.3/blob/decals/GeneralDeveloper'sNotebook.html" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                    <path d="M8 7h8"/>
+                                    <path d="M8 11h8"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">Developer Guide</div>
+                                <div class="dropdown-item-desc">Complete development documentation</div>
+                            </div>
+                        </a>
+                        <a href="https://github.com/notvolks/SulfurAI-1.4" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"/>
+                                    <polyline points="8 6 2 12 8 18"/>
+                                    <line x1="14" y1="4" x2="10" y2="20"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">Source Code</div>
+                                <div class="dropdown-item-desc">View on GitHub</div>
+                            </div>
+                        </a>
+                        <a href="https://github.com/notvolks/SulfurAI-1.3/blob/main/CODE_OF_CONDUCT.md" class="dropdown-item">
+                            <div class="dropdown-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="9" y1="15" x2="15" y2="15"/>
+                                    <line x1="9" y1="18" x2="15" y2="18"/>
+                                    <polyline points="9 12 10 12 10 11"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-text">
+                                <div class="dropdown-item-title">Code of Conduct</div>
+                                <div class="dropdown-item-desc">Contributing guidelines</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#getting-started" class="nav-link">Getting Started</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/notvolks/SulfurAI-1.4/releases" class="cta-button">Download</a>
+                </li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div class="page-wrapper">
     <div class="main-container">
     <div class="header">
         <img src="https://raw.githubusercontent.com/notvolks/SulfurAI-1.4/main/apps/SulfurAppAssets/lexendexa2.png" alt="SulfurAI Logo">
@@ -510,8 +1114,8 @@
         <img src="https://raw.githubusercontent.com/notvolks/SulfurAI-1.4/main/apps/SulfurAppAssets/preview.png" alt="SulfurAI Preview" class="hero-preview-img">
     </div>
 
-    <div class="features-showcase">
-        <div class="feature-item feature-left">
+    <div class="features-showcase" id="features">
+        <div class="feature-item feature-left" id="statistics">
             <div class="feature-content">
                 <h3>See your statistics in one place</h3>
                 <p>Dig deeper with just the statistics we know you care about.</p>
@@ -521,7 +1125,7 @@
             </div>
         </div>
 
-        <div class="feature-item feature-right">
+        <div class="feature-item feature-right" id="predictions">
             <div class="feature-image">
                 <img src="https://raw.githubusercontent.com/notvolks/SulfurAI-1.4/main/apps/SulfurAppAssets/predicted.png" alt="Prediction Dashboard">
             </div>
@@ -531,7 +1135,7 @@
             </div>
         </div>
 
-        <div class="feature-item feature-left">
+        <div class="feature-item feature-left" id="chat">
             <div class="feature-content">
                 <h3>Chat with Gemini</h3>
                 <p>Need to ask follow-up questions? Gemini has the full scope of your needs.</p>
@@ -542,13 +1146,25 @@
         </div>
     </div>
 
-    <div class="getting-started">
+    <div class="getting-started" id="getting-started">
         <h3>Getting Started</h3>
-        <ul>
-            <li>Install Python 3.11 <a href="https://www.python.org/downloads/release/python-3110/"><strong>here</strong></a></li>
-            <li>Install and extract SulfurAI</li>
-            <li>Run the SulfurApp script and follow the instructions</li>
-        </ul>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px;">
+            <div style="background: rgba(26, 26, 26, 0.3); padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 149, 0, 0.3); transition: all 0.3s ease;">
+                <h4 style="color: #ff9500; margin-top: 0; font-size: 1.4em; font-weight: 600;">For Regular Users</h4>
+                <ul style="color: #cccccc; line-height: 2; font-weight: 300;">
+                    <li>Download and extract SulfurAI (7z) from <a href="https://github.com/notvolks/SulfurAI-1.4/releases"><strong>here</strong></a></li>
+                    <li>Run the <code style="background: rgba(255, 149, 0, 0.1); padding: 2px 8px; border-radius: 4px; color: #ffaa33;">SulfurApp</code> script and follow the instructions</li>
+                </ul>
+            </div>
+            <div style="background: rgba(26, 26, 26, 0.3); padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 149, 0, 0.3); transition: all 0.3s ease;">
+                <h4 style="color: #ff9500; margin-top: 0; font-size: 1.4em; font-weight: 600;">For Developers</h4>
+                <ul style="color: #cccccc; line-height: 2; font-weight: 300;">
+                    <li>Install Python 3.11: <a href="https://www.python.org/downloads/release/python-3110/"><strong>Download here</strong></a></li>
+                    <li>Download the source code (NOT the 7z): <a href="https://github.com/notvolks/SulfurAI-1.4"><strong>Source Code</strong></a></li>
+                    <li>Run the <code style="background: rgba(255, 149, 0, 0.1); padding: 2px 8px; border-radius: 4px; color: #ffaa33;">SulfurApp</code> script with Python 3.11 and make changes as needed</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="info-box">
@@ -559,20 +1175,73 @@
     </div>
 
     <div class="contact">
-        <h3>Contact & Legal</h3>
-        <p>📧 <strong>nb.volkshub.inquiries@gmail.com</strong></p>
-        <p>
-            <a href="privacy.html"><strong>Privacy Policy</strong></a> |
-            <a href="terms.html"><strong>Terms of Service</strong></a>
-        </p>
-    </div>
+    <h3>Contact & Legal</h3>
+    <p>📧 <strong>nb.volkshub.inquiries@gmail.com</strong></p>
+    <p>
+        <a href="privacy.html"><strong>Privacy Policy</strong></a> |
+        <a href="terms.html"><strong>Terms of Service</strong></a>
+    </p>
+</div>
 
-    <div class="info-box">
+        <div class="info-box">
         <h3>Contributors</h3>
         <a href="https://github.com/notvolks/SulfurAI-1.4/graphs/contributors">
-            <img src="https://contrib.rocks/image?repo=notvolks/SulfurAI-1.4" alt="Contributors" />
+            <img src="https://contrib.rocks/image?repo=notvolks/SulfurAI-1.4" alt="Contributors">
         </a>
     </div>
+
     </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+
+                <p>AI, open-source analytics and prediction software for creators.</p>
+                <div class="social-links">
+                    <a href="https://github.com/notvolks/SulfurAI-1.4" title="GitHub">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="https://github.com/notvolks/SulfurAI-1.4/releases">Download</a></li>
+                    <li><a href="https://github.com/notvolks/SulfurAI-1.4">Source Code</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="https://htmlpreview.github.io/?https://github.com/notvolks/SulfurAI-1.3/blob/decals/GeneralDeveloper'sNotebook.html">Developer Guide</a></li>
+                    <li><a href="https://github.com/notvolks/SulfurAI-1.3/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                    <li><a href="https://github.com/notvolks/SulfurAI-1.4/graphs/contributors">Contributors</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#a0cec28ed6cfcccbd3c8d5c28ec9ced1d5c9d2c9c5d3e0c7cdc1c9cc8ec3cfcd">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 SulfurAI. Open-source software released under permissive license.</p>
+            <p>Built with ❤️ for creators</p>
+        </div>
+    </footer>
+
 </body>
 </html>
